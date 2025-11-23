@@ -1,114 +1,623 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AML Interactive Presentation</title>
-<style>
-body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background: #f7f9fb;
-}
-h1 {
-  color: #2c3e50;
-  margin-bottom: 20px;
-}
-.section {
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background: #fff;
-  padding: 10px;
-}
-button {
-  padding: 10px 15px;
-  margin-top: 10px;
-  cursor: pointer;
-  background: #2c3e50;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  width: 100%;
-  text-align: left;
-  font-size: 16px;
-}
-button:hover {
-  background: #34495e;
-}
-.content {
-  max-height: 0;
-  overflow: hidden;
-  margin-top: 10px;
-  padding-left: 10px;
-  border-left: 3px solid #2c3e50;
-  transition: max-height 0.5s ease-out, padding 0.5s ease;
-}
-.content.open {
-  max-height: 500px;
-  padding: 10px;
-}
-ul {
-  margin: 5px 0 0 20px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AML Interactive Presentation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); 
+            overflow: hidden; 
+            height: 100vh;
+        }
+        .slide { 
+            display: none; 
+            width: 100%; 
+            height: calc(100vh - 80px); 
+            padding: 40px; 
+            overflow-y: auto; 
+        }
+        .slide.active { display: block; }
+        .slide-content { 
+            background: white; 
+            border-radius: 20px; 
+            padding: 40px; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3); 
+            max-width: 1200px; 
+            margin: 0 auto;
+        }
+        h1 { color: #2c3e50; font-size: 2.5em; margin-bottom: 20px; text-align: center; }
+        h2 { color: #34495e; font-size: 1.8em; margin-bottom: 20px; }
+        h3 { color: #2c3e50; font-size: 1.3em; margin: 15px 0 10px 0; }
+        p, li { font-size: 1.1em; line-height: 1.6; color: #333; margin-bottom: 10px; }
+        ul, ol { margin-left: 20px; }
+        .box { padding: 15px; margin: 15px 0; border-radius: 10px; }
+        .info-box { background: #e8f4f8; border-left: 5px solid #3498db; }
+        .highlight-box { background: #fff9e6; border: 2px solid #f39c12; }
+        .warning-box { background: #fef3c7; border-left: 5px solid #f39c12; }
+        .key-box { background: #e8f5e9; border-left: 5px solid #27ae60; }
+        .navigation { 
+            position: fixed; 
+            bottom: 0; 
+            width: 100%; 
+            height: 80px; 
+            background: rgba(255,255,255,0.95); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 40px; 
+        }
+        .nav-button { 
+            padding: 15px 30px; 
+            font-size: 1.1em; 
+            border: none; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            background: #2c3e50; 
+            color: white; 
+            font-weight: 600; 
+        }
+        .nav-button:hover { background: #34495e; }
+        .nav-button:disabled { background: #ccc; cursor: not-allowed; }
+        .slide-counter { font-size: 1.2em; color: #2c3e50; font-weight: 600; }
+    </style>
 </head>
 <body>
+    <div id="slides">
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <div class="slide-content">
+                <h1>💼 Anti-Money Laundering (AML)</h1>
+                <h2 style="text-align: center; color: #34495e;">Interactive Presentation</h2>
+                <p style="text-align: center; font-size: 1.2em; margin-top: 20px;">Understanding UK AML regulations, FATF standards, and compliance requirements</p>
+                <p style="text-align: center; color: #666; margin-top: 15px;">Use the navigation buttons below to explore</p>
+            </div>
+        </div>
 
-<h1>AML Interactive Presentation</h1>
-<p>Click the buttons to expand each section and view details.</p>
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>📋 AMLAR Overview</h2>
+                <div class="box info-box">
+                    <h3>Overview</h3>
+                    <p>AMLAR strengthens UK AML supervision, improves corporate transparency, and boosts asset recovery powers.</p>
+                </div>
+                <h3>Key Areas:</h3>
+                <ul>
+                    <li>Money Laundering Regulations (MLRs) revisions</li>
+                    <li>FCA, HMRC, and OPBAS supervision improvements</li>
+                    <li>Companies House verification reforms</li>
+                    <li>Crypto oversight (Travel Rule, analytics)</li>
+                    <li>Enhanced law enforcement and asset recovery powers</li>
+                </ul>
+            </div>
+        </div>
 
-<div class="section">
-  <button onclick="toggleContent(this)">AMLAR</button>
-  <div class="content">
-    <h2>Overview</h2>
-    <p>AMLAR strengthens UK AML supervision, improves corporate transparency, and boosts asset recovery powers.</p>
-    <ul>
-      <li>Money Laundering Regulations (MLRs) revisions</li>
-      <li>FCA, HMRC, and OPBAS supervision improvements</li>
-      <li>Companies House verification reforms</li>
-      <li>Crypto oversight (Travel Rule, analytics)</li>
-      <li>Enhanced law enforcement and asset recovery powers</li>
-    </ul>
-  </div>
-</div>
+        <!-- Slide 3 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>📜 Money Laundering Regulations</h2>
+                <div class="box highlight-box">
+                    <h3>What Are They?</h3>
+                    <p>The Money Laundering Regulations set out requirements for businesses to prevent money laundering and terrorist financing.</p>
+                </div>
+                <h3>Key Requirements:</h3>
+                <ul>
+                    <li><strong>Risk Assessment:</strong> Assess and document ML/TF risks</li>
+                    <li><strong>Customer Due Diligence:</strong> Verify customer identity</li>
+                    <li><strong>Enhanced Due Diligence:</strong> For high-risk customers</li>
+                    <li><strong>Record Keeping:</strong> Maintain records for 5 years</li>
+                    <li><strong>Suspicious Activity Reports:</strong> Report to NCA</li>
+                    <li><strong>Training:</strong> Regular AML training for staff</li>
+                </ul>
+            </div>
+        </div>
 
-<div class="section">
-  <button onclick="toggleContent(this)">FATF</button>
-  <div class="content">
-    <h2>Overview</h2>
-    <p>FATF sets global AML/CFT standards. The UK’s next Mutual Evaluation Review (MER) is in 2027.</p>
-    <ul>
-      <li>Rec. 1 — risk assessments</li>
-      <li>Rec. 10 — customer due diligence</li>
-      <li>Rec. 12 — PEPs</li>
-      <li>Rec. 15 — crypto regulation</li>
-      <li>Rec. 20 — SAR quality</li>
-      <li>Rec. 24 — beneficial ownership transparency</li>
-    </ul>
-  </div>
-</div>
+        <!-- Slide 4 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>👁️ FCA, HMRC & OPBAS Supervision</h2>
+                <h3>FCA (Financial Conduct Authority)</h3>
+                <ul>
+                    <li>Supervises banks, payment institutions, e-money firms</li>
+                    <li>Conducts thematic reviews and enforcement</li>
+                    <li>Issues fines for non-compliance</li>
+                </ul>
+                <h3>HMRC (HM Revenue & Customs)</h3>
+                <ul>
+                    <li>Supervises Money Service Businesses</li>
+                    <li>High-value dealers, estate agents</li>
+                    <li>Trust or company service providers</li>
+                </ul>
+                <h3>OPBAS</h3>
+                <ul>
+                    <li>Oversees professional body supervisors</li>
+                    <li>Accountants, legal professionals, tax advisers</li>
+                </ul>
+            </div>
+        </div>
 
-<div class="section">
-  <button onclick="toggleContent(this)">REP CRIM & FSMA</button>
-  <div class="content">
-    <h2>REP CRIM</h2>
-    <p>Requires authorized persons to report suspicions under FSMA.</p>
-    <h2>FSMA Changes</h2>
-    <ul>
-      <li>Updates to authorization requirements</li>
-      <li>Stronger supervision standards</li>
-      <li>Enforcement for non-compliance</li>
-    </ul>
-  </div>
-</div>
+        <!-- Slide 5 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🏢 Companies House Reforms</h2>
+                <div class="box key-box">
+                    <h3>What's Changing?</h3>
+                    <p>Strengthening verification to improve corporate transparency.</p>
+                </div>
+                <h3>Key Reforms:</h3>
+                <ul>
+                    <li><strong>Identity Verification:</strong> Directors and PSCs must verify identity</li>
+                    <li><strong>Beneficial Ownership:</strong> Enhanced transparency</li>
+                    <li><strong>Filing Requirements:</strong> Stricter checks</li>
+                    <li><strong>Powers to Reject:</strong> Can reject suspicious filings</li>
+                    <li><strong>Information Sharing:</strong> Better data sharing with law enforcement</li>
+                </ul>
+            </div>
+        </div>
 
-<script>
-function toggleContent(button) {
-  const content = button.nextElementSibling;
-  content.classList.toggle("open");
-}
-</script>
+        <!-- Slide 6 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>₿ Crypto Oversight</h2>
+                <h3>Travel Rule</h3>
+                <ul>
+                    <li>Share customer information during transfers</li>
+                    <li>Aligns with FATF Recommendation 16</li>
+                    <li>Applies to transfers over £1,000</li>
+                </ul>
+                <h3>Analytics & Monitoring</h3>
+                <ul>
+                    <li>Blockchain analytics tools</li>
+                    <li>Transaction monitoring</li>
+                    <li>Risk-based approach</li>
+                </ul>
+                <h3>FCA Registration</h3>
+                <ul>
+                    <li>All crypto firms must register</li>
+                    <li>Strict AML/CTF controls required</li>
+                </ul>
+            </div>
+        </div>
 
+        <!-- Slide 7 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>💰 Asset Recovery Powers</h2>
+                <h3>Key Powers:</h3>
+                <ul>
+                    <li><strong>Account Freezing Orders:</strong> Freeze bank accounts</li>
+                    <li><strong>Unexplained Wealth Orders:</strong> Require explanation</li>
+                    <li><strong>Crypto Seizure:</strong> Seize cryptoassets</li>
+                    <li><strong>Civil Recovery:</strong> Recover without conviction</li>
+                    <li><strong>Confiscation Orders:</strong> Court orders</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 8 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>🌍 FATF</h1>
+                <h2 style="text-align: center;">Financial Action Task Force</h2>
+                <div class="box info-box">
+                    <p>FATF sets global AML/CFT standards through 40 Recommendations.</p>
+                </div>
+                <div class="box highlight-box">
+                    <h3>UK's Next MER: 2027</h3>
+                    <p>Firms should ensure compliance now.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>📌 FATF Key Recommendations</h2>
+                <h3>Rec. 1 - Risk Assessments</h3>
+                <ul>
+                    <li>Identify, assess, understand ML/TF risks</li>
+                    <li>Apply risk-based approach</li>
+                </ul>
+                <h3>Rec. 10 - Customer Due Diligence</h3>
+                <ul>
+                    <li>Verify customer identity</li>
+                    <li>Identify beneficial owners</li>
+                    <li>Conduct ongoing monitoring</li>
+                </ul>
+                <h3>Rec. 12 - PEPs</h3>
+                <ul>
+                    <li>Risk management systems</li>
+                    <li>Senior management approval</li>
+                    <li>Enhanced monitoring</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 10 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>📌 More FATF Recommendations</h2>
+                <h3>Rec. 15 - Crypto</h3>
+                <ul>
+                    <li>Assess ML/TF risks from new technologies</li>
+                    <li>Travel Rule for crypto</li>
+                </ul>
+                <h3>Rec. 20 - Suspicious Reporting</h3>
+                <ul>
+                    <li>Submit SARs to NCA</li>
+                    <li>Quality over quantity</li>
+                </ul>
+                <h3>Rec. 24 - Beneficial Ownership</h3>
+                <ul>
+                    <li>Maintain accurate information</li>
+                    <li>Accessible to authorities</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 11 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>⚖️ REP CRIM</h1>
+                <h2>Reporting Criminal Property</h2>
+                <div class="box warning-box">
+                    <p>Requirement under POCA 2002 to report suspicions of money laundering.</p>
+                </div>
+                <h3>Who Must Report?</h3>
+                <ul>
+                    <li>All persons in regulated sector</li>
+                    <li>Businesses supervised under MLRs</li>
+                </ul>
+                <h3>What to Report?</h3>
+                <ul>
+                    <li>Knowledge or suspicion of money laundering</li>
+                    <li>Criminal property</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 12 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>📝 How to Submit a SAR</h2>
+                <div class="box info-box">
+                    <p>Submit to <strong>National Crime Agency (NCA)</strong></p>
+                </div>
+                <h3>What to Include:</h3>
+                <ul>
+                    <li>Subject details (name, address, DOB)</li>
+                    <li>Description of suspicious activity</li>
+                    <li>Reason for suspicion</li>
+                    <li>Value and timing</li>
+                </ul>
+                <div class="box key-box">
+                    <p>✓ Report as soon as practicable<br>
+                    ✓ Quality over quantity<br>
+                    ✓ Don't tip off the subject</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>🏦 FSMA</h1>
+                <h2>Financial Services and Markets Act</h2>
+                <div class="box info-box">
+                    <p>Primary legislation governing financial services in the UK.</p>
+                </div>
+                <h3>Recent Changes:</h3>
+                <ul>
+                    <li>Authorization requirements updates</li>
+                    <li>Enhanced supervision standards</li>
+                    <li>Stronger enforcement powers</li>
+                    <li>Consumer Duty</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 14 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🔗 FSMA & AML Connection</h2>
+                <h3>Key Points:</h3>
+                <ul>
+                    <li>Firms must be FCA-authorized</li>
+                    <li>Must comply with MLRs</li>
+                    <li>FCA supervises compliance</li>
+                    <li>Can fine or withdraw authorization</li>
+                </ul>
+                <div class="box warning-box">
+                    <h3>Consequences:</h3>
+                    <p>Fines, restrictions, loss of authorization, prosecution, reputational damage</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>💱 Money Service Businesses</h1>
+                <div class="box info-box">
+                    <p>MSBs provide money transmission, currency exchange, or cheque cashing services.</p>
+                </div>
+                <h3>Types:</h3>
+                <ul>
+                    <li>Money Transfer Operators</li>
+                    <li>Currency Exchange</li>
+                    <li>Cheque Cashing</li>
+                    <li>Payment Service Providers</li>
+                </ul>
+                <div class="box warning-box">
+                    <h3>Why High Risk?</h3>
+                    <p>Speed, cross-border nature, cash-intensive, hard to track</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>👁️ Who Regulates MSBs?</h2>
+                <div class="box highlight-box">
+                    <h3>HMRC</h3>
+                    <p>Primary supervisor for MSBs in the UK</p>
+                </div>
+                <h3>HMRC's Role:</h3>
+                <ul>
+                    <li>Registration (mandatory before operating)</li>
+                    <li>Ongoing supervision</li>
+                    <li>Enforcement (penalties, cancellation)</li>
+                    <li>Guidance</li>
+                </ul>
+                <h3>Registration Requirements:</h3>
+                <ul>
+                    <li>Submit application</li>
+                    <li>Pay registration fee</li>
+                    <li>Demonstrate fit and proper status</li>
+                    <li>Provide beneficial owner details</li>
+                    <li>Show AML policies</li>
+                </ul>
+                <div class="box warning-box">
+                    <p>Operating without registration is a criminal offence</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>📋 MSB Responsibilities</h2>
+                <h3>1. Risk Assessment</h3>
+                <ul>
+                    <li>Business-wide risk assessment</li>
+                    <li>Document findings</li>
+                    <li>Update regularly</li>
+                </ul>
+                <h3>2. Policies & Controls</h3>
+                <ul>
+                    <li>Establish AML policies</li>
+                    <li>Implement controls</li>
+                    <li>Regular review</li>
+                </ul>
+                <h3>3. Customer Due Diligence</h3>
+                <ul>
+                    <li>Verify identity</li>
+                    <li>Understand business relationship</li>
+                    <li>Enhanced DD for high-risk</li>
+                    <li>Ongoing monitoring</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 18 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>📋 MSB Responsibilities (Cont.)</h2>
+                <h3>4. Record Keeping</h3>
+                <ul>
+                    <li>5 years for CDD records</li>
+                    <li>5 years for transaction records</li>
+                    <li>Accessible to HMRC and law enforcement</li>
+                </ul>
+                <h3>5. SARs</h3>
+                <ul>
+                    <li>Appoint MLRO</li>
+                    <li>Internal reporting procedures</li>
+                    <li>Submit to NCA</li>
+                </ul>
+                <h3>6. Training</h3>
+                <ul>
+                    <li>Regular AML training</li>
+                    <li>Appropriate to role</li>
+                    <li>Keep records</li>
+                </ul>
+                <div class="box warning-box">
+                    <p>Fines up to £5M, prosecution, cancellation</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>🎯 Systems Prioritisation</h1>
+                <h2>Risk-Based Approach</h2>
+                <div class="box info-box">
+                    <p>Prioritise AML systems based on ML/TF risk level.</p>
+                </div>
+                <h3>Means:</h3>
+                <ul>
+                    <li>Identify highest risks</li>
+                    <li>Allocate resources accordingly</li>
+                    <li>Enhanced measures for high-risk</li>
+                    <li>Simplified for low-risk (where appropriate)</li>
+                </ul>
+                <div class="box highlight-box">
+                    <p><strong>High risk = Enhanced controls</strong><br>
+                    <strong>Low risk = Standard controls</strong><br>
+                    Never zero controls</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 20 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🔍 Risk Factors</h2>
+                <h3>Customer Risk</h3>
+                <ul>
+                    <li>High: PEPs, complex structures</li>
+                    <li>Medium: Standard business</li>
+                    <li>Lower: Public companies, government</li>
+                </ul>
+                <h3>Geographic Risk</h3>
+                <ul>
+                    <li>High: FATF high-risk jurisdictions</li>
+                    <li>Lower: EEA, strong AML regimes</li>
+                </ul>
+                <h3>Product/Service Risk</h3>
+                <ul>
+                    <li>High: Anonymous, cash, crypto</li>
+                    <li>Lower: Face-to-face with audit trail</li>
+                </ul>
+                <h3>Channel Risk</h3>
+                <ul>
+                    <li>High: Non-face-to-face</li>
+                    <li>Lower: Face-to-face verification</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 21 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>⚙️ Prioritising Controls</h2>
+                <div class="box key-box">
+                    <h3>Step 1: Risk Assessment</h3>
+                    <p>Identify and assess ML/TF risks. Rate as High, Medium, or Low.</p>
+                </div>
+                <div class="box key-box">
+                    <h3>Step 2: Design Controls</h3>
+                    <p>Match control intensity to risk level. Enhanced for high-risk.</p>
+                </div>
+                <div class="box key-box">
+                    <h3>Step 3: Allocate Resources</h3>
+                    <p>Direct resources to highest-risk areas. More frequent monitoring for high-risk customers.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 22 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🛡️ Enhanced Measures</h2>
+                <h3>Enhanced Due Diligence</h3>
+                <ul>
+                    <li>Additional customer information</li>
+                    <li>Source of funds and wealth</li>
+                    <li>Senior management approval</li>
+                    <li>Enhanced ongoing monitoring</li>
+                </ul>
+                <h3>Enhanced Monitoring</h3>
+                <ul>
+                    <li>More frequent reviews</li>
+                    <li>Lower alert thresholds</li>
+                    <li>Manual review</li>
+                    <li>Real-time for very high-risk</li>
+                </ul>
+                <div class="box warning-box">
+                    <p>Document why high-risk and what measures applied</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 23 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>✅ Best Practices</h2>
+                <div class="box key-box">
+                    <h3>1. Regular Review</h3>
+                    <ul>
+                        <li>At least annually</li>
+                        <li>When business changes</li>
+                        <li>New products/services</li>
+                        <li>Following regulatory changes</li>
+                    </ul>
+                </div>
+                <div class="box key-box">
+                    <h3>2. Technology</h3>
+                    <ul>
+                        <li>Automate routine, low-risk activities</li>
+                        <li>Transaction monitoring systems</li>
+                        <li>Automated screening</li>
+                    </ul>
+                </div>
+                <div class="box key-box">
+                    <h3>3. Management Information</h3>
+                    <ul>
+                        <li>Track metrics on high-risk</li>
+                        <li>Monitor control effectiveness</li>
+                        <li>Report to senior management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 24 -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>📝 Summary</h2>
+                <div class="box key-box">
+                    <h3>Key Takeaways:</h3>
+                    <ul>
+                        <li>✓ AMLAR strengthens UK AML framework</li>
+                        <li>✓ FATF sets global standards (MER 2027)</li>
+                        <li>✓ REP CRIM - legal obligation to report</li>
+                        <li>✓ FSMA links authorization to AML compliance</li>
+                        <li>✓ MSBs regulated by HMRC - must register</li>
+                        <li>✓ Risk-based approach to prioritise controls</li>
+                    </ul>
+                </div>
+                <div class="box highlight-box" style="text-align: center;">
+                    <p style="font-size: 1.2em;"><strong>Compliance is not optional - it's a legal requirement</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <button class="nav-button" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <div class="slide-counter"><span id="current">1</span> / <span id="total">24</span></div>
+        <button class="nav-button" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </nav>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+        document.getElementById('total').textContent = total;
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide += direction;
+            if (currentSlide >= total) currentSlide = total - 1;
+            if (currentSlide < 0) currentSlide = 0;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current').textContent = currentSlide + 1;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === total - 1;
+        }
+
+        document.getElementById('prevBtn').disabled = true;
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+    </script>
 </body>
 </html>
