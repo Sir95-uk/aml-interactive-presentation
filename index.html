@@ -5,13 +5,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AML Interactive Presentation</title>
 <style>
-body { font-family: Arial, sans-serif; padding: 20px; background: #f7f9fb; }
-h1 { color: #2c3e50; }
-.section { margin-bottom: 20px; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; }
-button { padding: 10px 15px; margin-top: 10px; cursor: pointer; background: #2c3e50; color: white; border: none; border-radius: 4px; }
-button:hover { background: #34495e; }
-.content { max-height: 0; overflow: hidden; margin-top: 10px; padding-left: 10px; border-left: 3px solid #2c3e50; transition: max-height 0.5s ease-out, padding 0.5s ease; }
-.content.open { max-height: 500px; padding: 10px; }
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background: #f7f9fb;
+}
+h1 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+.section {
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  padding: 10px;
+}
+button {
+  padding: 10px 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  background: #2c3e50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+}
+button:hover {
+  background: #34495e;
+}
+.content {
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 10px;
+  padding-left: 10px;
+  border-left: 3px solid #2c3e50;
+  transition: max-height 0.5s ease-out, padding 0.5s ease;
+}
+.content.open {
+  max-height: 500px;
+  padding: 10px;
+}
+ul {
+  margin: 5px 0 0 20px;
+}
 </style>
 </head>
 <body>
