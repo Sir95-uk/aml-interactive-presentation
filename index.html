@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🛡️ Using Microsoft Copilot</title>
+    <title>📊 AML Regulatory Timeline & Guide</title>
     <style>
         * {
             margin: 0;
@@ -15,13 +15,13 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             min-height: 100vh;
             padding: 20px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
             border-radius: 20px;
@@ -30,7 +30,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
             padding: 40px;
             text-align: center;
@@ -50,6 +50,47 @@
             padding: 40px;
         }
 
+        .timeline {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #1e3c72;
+        }
+
+        .timeline h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #2a5298;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item .date {
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item.urgent {
+            border-left-color: #dc3545;
+        }
+
+        .timeline-item.upcoming {
+            border-left-color: #ffc107;
+        }
+
         .section {
             margin-bottom: 30px;
             border: 2px solid #e0e0e0;
@@ -59,8 +100,8 @@
         }
 
         .section:hover {
-            border-color: #667eea;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            border-color: #1e3c72;
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.2);
         }
 
         .section-header {
@@ -73,10 +114,11 @@
             font-weight: bold;
             font-size: 1.2em;
             transition: background 0.3s ease;
+            user-select: none;
         }
 
         .section-header:hover {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
         }
 
@@ -90,133 +132,27 @@
         }
 
         .section-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-            padding: 0 20px;
+            display: none;
+            padding: 20px;
         }
 
         .section.active .section-content {
-            max-height: 5000px;
-            padding: 20px;
+            display: block;
+            animation: slideDown 0.3s ease;
         }
 
-        .copilot-type {
-            background: #f8f9fa;
-            padding: 15px;
-            margin: 15px 0;
-            border-left: 4px solid #667eea;
-            border-radius: 5px;
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .copilot-type h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
-        .scenario-card {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 15px 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .scenario-card:hover {
-            border-color: #667eea;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .scenario-card h4 {
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
-        .scenario-reveal {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-            margin-top: 15px;
-            padding-top: 0;
-            border-top: 2px solid #e0e0e0;
-        }
-
-        .scenario-card.revealed .scenario-reveal {
-            max-height: 1000px;
-            padding-top: 15px;
-        }
-
-        .checklist-item {
-            padding: 15px;
-            margin: 10px 0;
-            background: #f8f9fa;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .checklist-item:hover {
-            background: #e9ecef;
-        }
-
-        .checklist-item.checked {
-            background: #d4edda;
-            border-left: 4px solid #28a745;
-        }
-
-        .checklist-item .checkbox {
-            width: 24px;
-            height: 24px;
-            border: 2px solid #667eea;
-            border-radius: 4px;
-            margin-right: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .checklist-item.checked .checkbox {
-            background: #28a745;
-            border-color: #28a745;
-        }
-
-        .checklist-item.checked .checkbox::after {
-            content: '✓';
-            color: white;
-            font-weight: bold;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
-            margin: 5px;
-        }
-
-        .badge.good {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .badge.bad {
-            background: #f8d7da;
-            color: #721c24;
-        }
-
-        .badge.warning {
-            background: #fff3cd;
-            color: #856404;
-        }
-
-        .example-box {
+        .info-box {
             background: #e7f3ff;
             border-left: 4px solid #2196F3;
             padding: 15px;
@@ -240,23 +176,25 @@
             border-radius: 5px;
         }
 
-        .progress-bar {
-            background: #e0e0e0;
-            height: 30px;
-            border-radius: 15px;
-            overflow: hidden;
-            margin: 20px 0;
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
         }
 
-        .progress-fill {
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            height: 100%;
-            transition: width 0.5s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
+        .key-point {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #1e3c72;
+            border-radius: 5px;
+        }
+
+        .key-point h4 {
+            color: #1e3c72;
+            margin-bottom: 10px;
         }
 
         ul, ol {
@@ -269,7 +207,7 @@
         }
 
         strong {
-            color: #667eea;
+            color: #1e3c72;
         }
 
         .table-container {
@@ -290,13 +228,37 @@
         }
 
         th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
             font-weight: bold;
         }
 
         tr:hover {
             background: #f8f9fa;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .badge.new {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge.upcoming {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .badge.urgent {
+            background: #f8d7da;
+            color: #721c24;
         }
 
         @media (max-width: 768px) {
@@ -313,109 +275,163 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🛡️ Using Microsoft Copilot</h1>
-            <p>Your guide to using Copilot responsibly and effectively in financial crime-related work</p>
+            <h1>📊 AML Regulatory Timeline & Guide</h1>
+            <p>Key regulations, dates, and compliance requirements for Anti-Money Laundering</p>
         </div>
 
         <div class="content">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressBar">0% Complete</div>
-            </div>
-
-            <div class="section">
-                <div class="section-header">
-                    <span>📚 Introduction to Copilot</span>
-                    <span class="icon">▼</span>
+            <div class="timeline">
+                <h3>🗓️ Key Upcoming Dates</h3>
+                <div class="timeline-item">
+                    <div class="date">📅 October 2023</div>
+                    <div>FCA takes over crypto asset regulation from HMRC</div>
                 </div>
-                <div class="section-content">
-                    <p><strong>Important:</strong> This guide covers appropriate use, key sensitivities, and compliance considerations when using Microsoft Copilot at the FCA.</p>
-                    <p style="margin-top: 15px;">Microsoft Copilot is an AI-powered assistant integrated across Microsoft 365 applications. It can help with research, writing, data analysis, and productivity tasks.</p>
-                    
-                    <div class="copilot-type">
-                        <h3>🌐 Web Copilot</h3>
-                        <p><strong>What it does:</strong> General research and information gathering</p>
-                        <p><strong>Best for:</strong> Understanding regulatory frameworks, industry trends, public information</p>
-                        <p><strong>Remember:</strong> No access to internal FCA documents or data</p>
-                    </div>
-
-                    <div class="copilot-type">
-                        <h3>📝 Document Copilot</h3>
-                        <p><strong>What it does:</strong> Works with YOUR documents and data</p>
-                        <p><strong>Best for:</strong> Drafting policy papers, analyzing data, creating presentations</p>
-                        <p><strong>Remember:</strong> Only sees the specific document you have open</p>
-                    </div>
-
-                    <div class="copilot-type">
-                        <h3>💬 Teams Copilot</h3>
-                        <p><strong>What it does:</strong> Summarizes meetings and conversations</p>
-                        <p><strong>Best for:</strong> Catching up on discussions, tracking action items</p>
-                        <p><strong>Remember:</strong> Special rules apply - see Copilot Transcribe section</p>
-                    </div>
-
-                    <div class="copilot-type">
-                        <h3>📧 Outlook Copilot</h3>
-                        <p><strong>What it does:</strong> Drafts emails and summarizes threads</p>
-                        <p><strong>Best for:</strong> Email management and communication</p>
-                        <p><strong>Remember:</strong> Consider sensitivity of email content</p>
-                    </div>
+                <div class="timeline-item upcoming">
+                    <div class="date">📅 2024-2026</div>
+                    <div>FCA to implement full conduct regulation of crypto assets</div>
+                </div>
+                <div class="timeline-item urgent">
+                    <div class="date">📅 2025-2026</div>
+                    <div><strong>CRITICAL:</strong> OPBAS abolished - Professional enablers transition to direct FCA supervision</div>
+                </div>
+                <div class="timeline-item upcoming">
+                    <div class="date">📅 2025-2026</div>
+                    <div>AMLAR implementation and transition period</div>
+                </div>
+                <div class="timeline-item upcoming">
+                    <div class="date">📅 2027</div>
+                    <div>FATF Mutual Evaluation Review (MER) of the UK</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">📅 2026</div>
+                    <div>MSB registration reforms take effect</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">📅 Ongoing</div>
+                    <div>REP CRIM reporting obligations under current regulations</div>
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section active">
                 <div class="section-header">
-                    <span>✅ Appropriate Uses</span>
+                    <span>🏛️ AMLAR - Anti-Money Laundering Regulations</span>
                     <span class="icon">▼</span>
                 </div>
                 <div class="section-content">
-                    <ul>
-                        <li><strong>Regulatory Research:</strong> Understand financial crime regulations, frameworks, and international standards
-                            <div class="example-box">Example: "Explain the key requirements of the Money Laundering Regulations 2017"</div>
-                        </li>
-                        <li><strong>Document Drafting:</strong> Help draft policy papers, guidance documents, and internal communications
-                            <div class="example-box">Example: "Help me draft an outline for guidance on fraud prevention controls"</div>
-                        </li>
-                        <li><strong>Analysis:</strong> Summarize publicly available industry reports and research
-                            <div class="example-box">Example: "Summarize the key trends in this financial crime typology report"</div>
-                        </li>
-                        <li><strong>Training Development:</strong> Create training content on financial crime typologies
-                            <div class="example-box">Example: "Create an outline for training on APP fraud indicators"</div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                    <div class="info-box">
+                        <h4>What is AMLAR?</h4>
+                        <p>AMLAR is the UK's comprehensive reform of Anti-Money Laundering regulations, replacing the Money Laundering Regulations 2017 (MLR 2017) with a modernized regulatory framework.</p>
+                    </div>
 
-            <div class="section">
-                <div class="section-header">
-                    <span>⛔ Important Restrictions</span>
-                    <span class="icon">▼</span>
-                </div>
-                <div class="section-content">
-                    <div class="danger-box">
-                        <h4>🚫 NEVER input:</h4>
+                    <div class="key-point">
+                        <h4>🎯 Key Changes Under AMLAR:</h4>
                         <ul>
-                            <li>Personal data (names, addresses, account numbers)</li>
-                            <li>Confidential firm information</li>
-                            <li>Market-sensitive data</li>
-                            <li>Details of ongoing enforcement matters</li>
-                            <li>Privileged legal communications</li>
+                            <li><strong>Supervision Reform:</strong> OPBAS will be abolished and replaced with a new FCA body that directly supervises professional enablers (accountants, lawyers, tax advisers)</li>
+                            <li><strong>Direct FCA Oversight:</strong> Professional body supervisors will no longer regulate AML compliance - FCA takes direct control</li>
+                            <li><strong>Crypto Asset Oversight:</strong> Comprehensive regulation of crypto asset businesses by FCA (since October 2023, with full conduct regulation coming 2024-2026)</li>
+                            <li><strong>Asset Recovery Powers:</strong> Enhanced powers for civil recovery and unexplained wealth orders</li>
+                            <li><strong>Risk-Based Approach:</strong> More flexible, proportionate requirements based on actual risk</li>
+                            <li><strong>Technology Integration:</strong> Recognition of digital identity verification and AI-powered monitoring</li>
+                        </ul>
+                    </div>
+
+                    <div class="danger-box">
+                        <h4>🔄 MAJOR STRUCTURAL CHANGE - End of Professional Body Supervision:</h4>
+                        <p><strong>Current System (Until AMLAR):</strong> Professional bodies (ICAEW, Law Society, etc.) supervise their members for AML, with OPBAS overseeing these bodies</p>
+                        <p><strong>New System (Under AMLAR):</strong> OPBAS abolished. FCA establishes new supervisory body to directly regulate professional enablers</p>
+                        <p><strong>Why this matters:</strong></p>
+                        <ul>
+                            <li>More consistent and rigorous supervision across the sector</li>
+                            <li>Professional bodies can no longer "self-regulate" on AML</li>
+                            <li>FCA will have direct enforcement powers over accountants, lawyers, and tax advisers</li>
+                            <li>Stronger focus on high-risk professional enablers who facilitate money laundering</li>
+                            <li>Better coordination with other FCA-supervised sectors</li>
                         </ul>
                     </div>
 
                     <div class="warning-box">
-                        <h4>⚠️ Stay within your remit:</h4>
-                        <p>Only use Copilot for information relevant to your role and responsibilities. Don't search for details about cases or matters you're not involved with.</p>
+                        <h4>⚠️ Implementation Timeline:</h4>
+                        <p><strong>2025-2026:</strong> Transition period for firms to adapt systems and processes</p>
+                        <p><strong>Key Action:</strong> Review and update your AML policies, procedures, and training materials to align with AMLAR requirements</p>
                     </div>
 
-                    <div class="warning-box">
-                        <h4>✓ Always verify outputs:</h4>
-                        <p>You are responsible for the accuracy of any work product. Apply your professional expertise and judgment.</p>
+                    <div class="success-box">
+                        <h4>✅ What You Need to Do:</h4>
+                        <ul>
+                            <li>Conduct a gap analysis between current MLR 2017 compliance and AMLAR requirements</li>
+                            <li>Update risk assessments to reflect new regulatory expectations</li>
+                            <li>Review customer due diligence procedures</li>
+                            <li>Ensure staff training covers AMLAR changes</li>
+                            <li>Update monitoring and reporting systems</li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
             <div class="section">
                 <div class="section-header">
-                    <span>🎯 Interactive Scenarios</span>
+                    <span>🌍 FATF - Financial Action Task Force</span>
                     <span class="icon">▼</span>
                 </div>
-                <d
+                <div class="section-content">
+                    <div class="info-box">
+                        <h4>What is FATF?</h4>
+                        <p>The Financial Action Task Force is the global standard-setter for anti-money laundering and counter-terrorist financing (AML/CFT). FATF issues recommendations that countries must implement to combat financial crime effectively.</p>
+                    </div>
+
+                    <div class="danger-box">
+                        <h4>🚨 2027 Mutual Evaluation Review (MER)</h4>
+                        <p><strong>Critical Date:</strong> The UK will undergo its next FATF Mutual Evaluation Review in 2027</p>
+                        <p><strong>What will be assessed:</strong></p>
+                        <ul>
+                            <li>Effectiveness of AMLAR implementation</li>
+                            <li>Quality and usefulness of Suspicious Activity Reports (SARs)</li>
+                            <li>Crypto asset regulation and supervision</li>
+                            <li>Beneficial ownership transparency</li>
+                            <li>International cooperation and information sharing</li>
+                            <li>Asset recovery and confiscation measures</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>⚠️ Why the 2027 MER Matters:</h4>
+                        <p>A poor rating could lead to:</p>
+                        <ul>
+                            <li>International reputational damage</li>
+                            <li>Increased scrutiny of UK financial institutions</li>
+                            <li>Higher compliance costs for cross-border transactions</li>
+                            <li>Potential "grey listing" if deficiencies are severe</li>
+                        </ul>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>📋 FATF 40 Recommendations - Key Areas:</h4>
+                        <ul>
+                            <li><strong>R.1-2:</strong> Risk assessment and national cooperation</li>
+                            <li><strong>R.10-16:</strong> Customer due diligence and record keeping</li>
+                            <li><strong>R.20-23:</strong> Suspicious transaction reporting</li>
+                            <li><strong>R.24-25:</strong> Beneficial ownership transparency</li>
+                            <li><strong>R.26-35:</strong> Supervision and enforcement</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span>📢 REP CRIM - Reporting Criminal Property</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="info-box">
+                        <h4>What is REP CRIM?</h4>
+                        <p>REP CRIM refers to the obligations under the Proceeds of Crime Act 2002 (POCA) requiring authorized persons in the regulated sector to report suspicions of money laundering and criminal property.</p>
+                    </div>
+
+                    <div class="key-point">
+                        <h4>🎯 Key Obligations:</h4>
+                        <ul>
+                            <li><strong>Suspicious Activity Reports (SARs):</strong> Must be filed when you know or suspect money laundering</li>
+                            <li><strong>Authorization Required:</strong> Must obtain consent from NCA before proceeding with suspicious transactions</li>
+                            <li><strong>Tipping Off:</strong> Prohibited from disclosing that a SAR has been made</li>
+                            <li><strong>Record Keeping:</stron
