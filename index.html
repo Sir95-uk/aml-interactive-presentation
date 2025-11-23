@@ -7,18 +7,10 @@
 <style>
 body { font-family: Arial, sans-serif; padding: 20px; background: #f7f9fb; }
 h1 { color: #2c3e50; }
-h2 { color: #34495e; margin-top: 10px; }
 .section { margin-bottom: 20px; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; }
 button { padding: 10px 15px; margin-top: 10px; cursor: pointer; background: #2c3e50; color: white; border: none; border-radius: 4px; }
 button:hover { background: #34495e; }
-.content { 
-  max-height: 0; 
-  overflow: hidden; 
-  margin-top: 10px; 
-  padding-left: 10px; 
-  border-left: 3px solid #2c3e50; 
-  transition: max-height 0.5s ease-out, padding 0.5s ease; 
-}
+.content { max-height: 0; overflow: hidden; margin-top: 10px; padding-left: 10px; border-left: 3px solid #2c3e50; transition: max-height 0.5s ease-out, padding 0.5s ease; }
 .content.open { max-height: 500px; padding: 10px; }
 </style>
 </head>
@@ -81,4 +73,3 @@ function toggleContent(button) {
 
 </body>
 </html>
-
