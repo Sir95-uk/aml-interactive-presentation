@@ -1,11 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>AML Interactive Presentation</title>
+    <meta charset="UTF-8">
+    <title>AML Interactive Presentation</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
+        h1 { color: #2E3A87; }
+        h2 { color: #2E7D32; }
+        nav { margin-bottom: 20px; }
+        nav button { margin-right: 10px; padding: 8px 12px; cursor: pointer; }
+        section { display: none; }
+        section.active { display: block; }
+    </style>
 </head>
 <body>
-  <h1>Welcome to the AML Interactive Presentation</h1>
-  <p>This page is live via GitHub Pages!</p>
+    <h1>Welcome to the AML Interactive Presentation</h1>
+    <p>Use the buttons below to navigate scenarios:</p>
+
+    <nav>
+        <button onclick="showSection('amlar')">AMLAR</button>
+        <button onclick="showSection('opbas')">OPBAS Changes</button>
+        <button onclick="showSection('repcrim')">REP CRIM</button>
+        <button onclick="showSection('crypto')">Crypto & FSMA</button>
+    </nav>
+
+    <section id="amlar">
+        <h2>AMLAR</h2>
+        <p>Anti-Money Laundering and Asset Recovery regulations overview.</p>
+        <ul>
+            <li>Key obligations for firms</li>
+            <li>Supervision and enforcement</li>
+        </ul>
+    </section>
+
+    <section id="opbas">
+        <h2>OPBAS Changes</h2>
+        <p>Upcoming changes that affect professional body oversight:</p>
+        <ul>
+            <li>New reporting requirements</li>
+            <li>Supervision enhancements</li>
+        </ul>
+    </section>
+
+    <section id="repcrim">
+        <h2>REP CRIM Reporting</h2>
+        <p>How to report suspicious activity in line with FCA requirements.</p>
+        <ul>
+            <li>What constitutes reportable activity</li>
+            <li>How to submit reports</li>
+        </ul>
+    </section>
+
+    <section id="crypto">
+        <h2>Crypto & FSMA Authorisation Changes</h2>
+        <p>Upcoming FSMA changes affecting crypto-related firms:</p>
+        <ul>
+            <li>New authorisation requirements</li>
+            <li>Compliance expectations</li>
+        </ul>
+    </section>
+
+    <script>
+        function showSection(id) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
 </body>
 </html>
-
