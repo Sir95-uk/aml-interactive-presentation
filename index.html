@@ -1,1 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AML Interactive Presentation</title>
+<style>
+body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; background: #f7f9fb; }
+h1 { color: #2c3e50; }
+h2 { color: #34495e; margin-top: 30px; }
+.section { margin-bottom: 20px; border: 1px solid #ccc; border-radius: 8px; background: #fff; padding: 10px; }
+button { padding: 10px 15px; margin-top: 10px; cursor: pointer; background: #2c3e50; color: white; border: none; border-radius: 4px; }
+button:hover { background: #34495e; }
+.content { display: none; margin-top: 10px; padding-left: 10px; border-left: 3px solid #2c3e50; }
+</style>
+</head>
+<body>
+
+<h1>AML Interactive Presentation</h1>
+<p>Click the buttons to expand each section and view details.</p>
+
+<div class="section">
+  <button onclick="toggleContent(this)">AMLAR</button>
+  <div class="content">
+    <h2>Overview</h2>
+    <p>AMLAR is a UK reform programme strengthening Anti-Money Laundering rules, improving supervision, corporate transparency, and asset recovery.</p>
+    <h2>Main Components</h2>
+    <ul>
+      <li>Revisions to the Money Laundering Regulations (MLRs)</li>
+      <li>Improved supervision via FCA, HMRC, and OPBAS</li>
+      <li>Companies House verification and transparency reforms</li>
+      <li>Crypto oversight (Travel Rule, analytics)</li>
+      <li>Enhanced law enforcement powers under POCA</li>
+      <li>Asset recovery improvements (AFOs, crypto seizure powers)</li>
+    </ul>
+    <h2>MLR Enhancements</h2>
+    <ul>
+      <li>Expanded triggers for Enhanced Due Diligence</li>
+      <li>Clearer Beneficial Owner validation expectations</li>
+      <li>Stronger ongoing monitoring requirements</li>
+      <li>Crypto firms under stricter FCA oversight</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <button onclick="toggleContent(this)">FATF</button>
+  <div class="content">
+    <h2>Overview</h2>
+    <p>FATF sets global AML/CFT standards for over 200 jurisdictions. The UK aligns closely with its 40 Recommendations.</p>
+    <h2>Key Recommendations</h2>
+    <ul>
+      <li>Rec. 1 — Risk assessments</li>
+      <li>Rec. 10 — Customer Due Diligence & ongoing monitoring</li>
+      <li>Rec. 12 — Politically Exposed Persons</li>
+      <li>Rec. 15 — Cryptoasset regulation</li>
+      <li>Rec. 20 — SAR reporting quality</li>
+      <li>Rec. 24 — Beneficial ownership transparency</li>
+    </ul>
+    <h2>Next MER 2027</h2>
+    <p>The UK’s next FATF Mutual Evaluation Review (MER) is scheduled for 2027. Focus areas will include:</p>
+    <ul>
+      <li>Supervisory effectiveness across FCA, HMRC & PBSs</li>
+      <li>Companies House identity verification enforcement</li>
+      <li>Crypto Travel Rule implementation</li>
+      <li>Use of AFOs and civil recovery powers</li>
+      <li>SAR quality and asset recovery performance</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <button onclick="toggleContent(this)">REP CRIM & FSMA</button>
+  <div class="content">
+    <h2>REP CRIM</h2>
+    <p>Under REP CRIM, authorized persons must report suspicions of money laundering. This applies to regulated firms under FSMA.</p>
+    <h2>FSMA Updates</h2>
+    <ul>
+      <li>Changes affect authorisation requirements for firms</li>
+      <li>Updated supervision standards</li>
+      <li>Stronger enforcement for non-compliance</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+function toggleContent(button) {
+  const content = button.nextElementSibling;
+  if (content.style.display === "block") {
+    content.style.display = "none";
+  } else {
+    content.style.display = "block";
+  }
+}
+</script>
+
+</body>
+</html>
 
