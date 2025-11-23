@@ -1,9 +1,9 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CPIA Disclosure Requirements</title>
+    <title>Interactive Co-Pilot Guide</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,264 +12,165 @@
             padding: 20px;
             max-width: 800px;
             margin: 0 auto;
-            color: #333;
+            background: #f5f5f5;
         }
-        
-        .slide {
-            margin-bottom: 30px;
-            padding: 20px;
+
+        .section {
+            background: white;
+            margin-bottom: 20px;
             border-radius: 8px;
-            background-color: #fff;
+            padding: 15px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        
-        .title-slide {
-            background-color: #f8f9fa;
-            text-align: center;
-        }
-        
-        .title {
-            font-size: 24px;
-            margin-top: 0;
-            color: #2c3e50;
-        }
-        
-        .subtitle {
-            font-size: 18px;
-            color: #666;
-        }
-        
-        .code-block {
-            background-color: #f5f5f5;
+
+        .section-header {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
             padding: 15px;
-            border-radius: 4px;
-            overflow-x: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-        
-        pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
+
+        .section-header:hover {
+            background: linear-gradient(135deg, #a777e3, #6e8efb);
+            transform: translateY(-2px);
         }
-        
-        .security-checklist {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        
-        .do-dont {
-            background-color: #f8f9fa;
+
+        .section-content {
+            display: none;
             padding: 15px;
-            border-radius: 4px;
+            border-top: 1px solid #eee;
         }
-        
-        .workflow-diagram {
-            width: 100%;
-            height: 400px;
-            background-color: #f5f5f5;
-            border-radius: 4px;
-            margin: 20px 0;
-        }
-        
-        .implementation-guide {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .quick-start, .monthly-review {
-            background-color: #f8f9fa;
+
+        .scenario {
+            background: white;
             padding: 15px;
-            border-radius: 4px;
+            margin: 10px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-        
-        .emergency-procedures {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+
+        .scenario:hover {
+            background: #f0f0f0;
+            transform: translateX(10px);
         }
-        
-        .procedure {
-            background-color: #f8f9fa;
-            padding: 15px;
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 10px;
+            background: white;
+            margin-bottom: 5px;
             border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checklist li:hover {
+            background: #f0f0f0;
+        }
+
+        .checklist li.completed {
+            background: #e8f5e9;
+            text-decoration: line-through;
+        }
+
+        .progress-bar {
+            background: #eee;
+            height: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .progress {
+            background: linear-gradient(135deg, #4caf50, #81c784);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
         }
     </style>
 </head>
 <body>
-    <!-- Slide 1: Title -->
-    <div class="slide title-slide">
-        <h1 class="title">CPIA Disclosure Requirements</h1>
-        <h2 class="subtitle">A Guide to Administrative Excellence</h2>
-        <p>November 2025</p>
+    <div class="progress-bar">
+        <div class="progress" id="progress"></div>
     </div>
 
-    <!-- Slide 2: Overview -->
-    <div class="slide">
-        <h2>Understanding CPIA Disclosure</h2>
-        <ul>
-            <li>Document classification standards</li>
-            <li>Security protocols</li>
-            <li>Version control requirements</li>
-            <li>Audit trail maintenance</li>
-            <li>Compliance checkpoints</li>
-        </ul>
-    </div>
-
-    <!-- Slide 3: Word Examples -->
-    <div class="slide">
-        <h2>Word Document Setup for CPIA Compliance</h2>
-        <div class="code-block">
-            <pre>[CLASSIFICATION LEVEL]
-[DOCUMENT ID]
-[VERSION NUMBER]
-[DATE CREATED]
-[REVIEW DATE]
-[AUTHOR NAME]
-[CLEARANCE REQUIRED]</pre>
-        </div>
-        <div class="code-block">
-            <pre>File > Info > Protect Document
-- Mark as Final
-- Encrypt with password
-- Restrict editing
-- Add digital signature</pre>
-        </div>
-    </div>
-
-    <!-- Slide 4: Excel Configuration -->
-    <div class="slide">
-        <h2>Excel Workbook Security and Tracking</h2>
-        <div class="code-block">
-            <pre>Tab 1: Header Information
-- Classification Level
-- Document ID
-- Version Number
-- Last Modified
-- Approved By
-
-Tab 2: Main Content
-- Data validation rules
-- Conditional formatting
-- Protected formulas
-- Audit tracking</pre>
-        </div>
-    </div>
-
-    <!-- Slide 5: PowerPoint Security -->
-    <div class="slide">
-        <h2>Secure Presentation Preparation</h2>
-        <div class="code-block">
-            <pre>[ ] Remove hidden data
-[ ] Check for embedded files
-[ ] Verify links
-[ ] Set permissions
-[ ] Enable tracking
-[ ] Add digital signatures</pre>
-        </div>
-    </div>
-
-    <!-- Slide 6: Teams Implementation -->
-    <div class="slide">
-        <h2>Microsoft Teams Channel Setup</h2>
-        <div class="code-block">
-            <pre>General/
-├── Announcements/
-├── Policies/
-└── Procedures/
-    ├── CPIA-Guidelines/
-    └── Security-Protocols/</pre>
-        </div>
-        <div class="code-block">
-            <pre>Channel: CPIA-Disclosures
-Type: Private
-Members: [List]
-Settings:
-- New message alerts: On
-- Files shared outside team: Blocked
-- @mentions: Restricted</pre>
-        </div>
-    </div>
-
-    <!-- Slide 7: OneDrive Organization -->
-    <div class="slide">
-        <h2>Secure File Storage Structure</h2>
-        <div class="code-block">
-            <pre>CPIA-Documents/
-├── CLASSIFIED/
-│   ├── TOP-SECRET/
-│   └── CONFIDENTIAL/
-├── UNCLASSIFIED/
-│   ├── PUBLIC/
-│   └── INTERNAL/
-└── ARCHIVE/
-    ├── RETENTION/
-    └── DESTRUCTION/</pre>
-        </div>
-        <div class="code-block">
-            <pre>[ ] Encryption enabled
-[ ] Two-factor required
-[ ] Activity monitoring
-[ ] Link restrictions
-[ ] Expiration dates</pre>
-        </div>
-    </div>
-
-    <!-- Slide 8: Disclosure Workflow -->
-    <div class="slide">
-        <h2>Step-by-Step Disclosure Process</h2>
-        <div class="workflow-diagram"></div>
-    </div>
-
-    <!-- Slide 9: Emergency Procedures -->
-    <div class="slide">
-        <h2>Incident Response Protocol</h2>
-        <div class="emergency-procedures">
-            <div class="procedure">
-                <h3>UNAUTHORIZED ACCESS:</h3>
-                <pre>1. Isolate affected documents
-2. Notify security team
-3. Document incident
-4. Review access protocols
-5. Update security measures</pre>
+    <div class="section">
+        <div class="section-header" onclick="toggleSection(this)">Basic CPIA Concepts</div>
+        <div class="section-content">
+            <div class="scenario" onclick="revealScenario(this)">
+                <h3>Document Classification</h3>
+                <p>Click to reveal appropriate handling procedures...</p>
             </div>
-            <div class="procedure">
-                <h3>SENSITIVE DATA BREACH:</h3>
-                <pre>1. Contain the breach
-2. Alert stakeholders
-3. Initiate investigation
-4. Update procedures
-5. Conduct training review</pre>
-            </div>
+            <ul class="checklist" data-section="basic">
+                <li onclick="toggleCheck(this)">Classify documents before sharing</li>
+                <li onclick="toggleCheck(this)">Enable tracking features</li>
+                <li onclick="toggleCheck(this)">Verify recipient clearance</li>
+            </ul>
         </div>
     </div>
 
-    <!-- Slide 10: Implementation Guide -->
-    <div class="slide">
-        <h2>Getting Started with CPIA Disclosure</h2>
-        <div class="implementation-guide">
-            <div class="quick-start">
-                <h3>QUICK START CHECKLIST:</h3>
-                <pre>[ ] Establish classification system
-[ ] Set up security protocols
-[ ] Train personnel
-[ ] Implement tracking
-[ ] Create emergency plan
-[ ] Review procedures
-[ ] Document workflows
-[ ] Set up audit system</pre>
+    <div class="section">
+        <div class="section-header" onclick="toggleSection(this)">Security Protocols</div>
+        <div class="section-content">
+            <div class="scenario" onclick="revealScenario(this)">
+                <h3>Security Measures</h3>
+                <p>Click to reveal security requirements...</p>
             </div>
-            <div class="monthly-review">
-                <h3>MONTHLY REVIEW:</h3>
-                <pre>[ ] Update procedures
-[ ] Conduct training
-[ ] Review incidents
-[ ] Check compliance
-[ ] Plan improvements
-[ ] Audit systems
-[ ] Verify backups</pre>
-            </div>
+            <ul class="checklist" data-section="security">
+                <li onclick="toggleCheck(this)">Implement encryption</li>
+                <li onclick="toggleCheck(this)">Use secure channels</li>
+                <li onclick="toggleCheck(this)">Maintain audit logs</li>
+            </ul>
         </div>
     </div>
+
+    <script>
+        // Section toggling
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            const isVisible = content.style.display === 'block';
+            content.style.display = isVisible ? 'none' : 'block';
+            
+            // Animate header
+            header.style.transform = isVisible ? 'translateY(0)' : 'translateY(-2px)';
+        }
+
+        // Scenario revealing
+        function revealScenario(scenario) {
+            const content = scenario.querySelector('p');
+            const isVisible = content.textContent.includes('...');
+            
+            if (isVisible) {
+                content.textContent = 'This is a sensitive document requiring TOP SECRET clearance.';
+            } else {
+                content.textContent = 'Click to reveal appropriate handling procedures...';
+            }
+        }
+
+        // Checklist functionality
+        function toggleCheck(item) {
+            item.classList.toggle('completed');
+            updateProgress();
+        }
+
+        // Progress tracking
+        function updateProgress() {
+            const totalItems = document.querySelectorAll('.checklist li').length;
+            const completedItems = document.querySelectorAll('.checklist li.completed').length;
+            const progress = (completedItems / totalItems) * 100;
+            
+            document.getElementById('progress').style.width = `${progress}%`;
+        }
+
+        // Initialize progress bar
+        updateProgress();
+    </script>
 </body>
 </html>
